@@ -1,6 +1,7 @@
 package com.example.chatapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if(item.getItemId()==R.id.main_create_group_option){
+           // AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this,R.style.AlertDialog);
+           // builder.setTitle();
             Intent groupIntent = new Intent(MainActivity.this,CreateGroupActivity.class);
             startActivity(groupIntent);
         }

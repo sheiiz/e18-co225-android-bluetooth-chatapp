@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button RegisterButton;
@@ -24,12 +27,15 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView AlreadyHaveAccountLink;
     private FirebaseAuth mAuth;
     private ProgressDialog loadingBar;
+    private DatabaseReference RootReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth=FirebaseAuth.getInstance();
+        RootReference = FirebaseDatabase.getInstance("https://chatapp-c7b80-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+        //databaseReference=Firebase.database.getReference("Users")
         InitializedFields();
 
         AlreadyHaveAccountLink.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                 CreateNewAccount();
             }
         });
+       // RootReference = FirebaseDatabase.getInstance().getReference();
     }
 
     private void CreateNewAccount() {
@@ -62,14 +69,19 @@ public class RegisterActivity extends AppCompatActivity {
             loadingBar.setMessage("Please wait... ");
             loadingBar.setCanceledOnTouchOutside(true);
             loadingBar.show();
+
             mAuth.createUserWithEmailAndPassword(email,password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                loadingBar.dismiss();
+                                String currentUserID =mAuth.getCurrentUser().getUid();
+
+                                RootReference.child("Users").child(currentUserID).setValue("");
+                                sendUserToMainActivity();
                                 Toast.makeText(RegisterActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                                sendUserToLoginActivity();
+                                loadingBar.dismiss();
+
 
                             }
                             else{
@@ -82,6 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void sendUserToMainActivity() {
+        Intent mainIntent = new Intent(RegisterActivity.this,MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
     }
 
     private void InitializedFields() {

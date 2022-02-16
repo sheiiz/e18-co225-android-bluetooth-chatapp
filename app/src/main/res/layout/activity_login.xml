@@ -92,18 +92,17 @@
                 android:id="@+id/do_not_have_account_link"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/login_button"
-                android:text="Don't have an account?"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
 
                 android:layout_marginTop="2dp"
-                android:layout_marginLeft="15dp"
                 android:layout_marginRight="23dp"
+                android:text="Don't have an account?"
                 android:textAlignment="center"
-                android:textSize="17sp"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                />
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>
