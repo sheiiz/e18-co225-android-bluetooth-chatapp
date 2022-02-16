@@ -12,6 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
@@ -19,10 +21,16 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout myTabLayout;
     private TabAccessAdapter myTabAccessAdapter;
 
+    private FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth=FirebaseAuth.getInstance();
+        currentUser=mAuth.getCurrentUser();
 
         mToolbar=findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
@@ -34,6 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
         myTabLayout=findViewById(R.id.main_tabs);
         myTabLayout.setupWithViewPager(myViewPager);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(currentUser == null){
+            sendUserToLoginActivity();
+        }
+    }
+
+    private void sendUserToLoginActivity() {
+        Intent loginIntent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(loginIntent);
     }
 
     @Override
@@ -51,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(groupIntent);
         }
         if(item.getItemId()==R.id.main_exit_option){
-            finish();
+            mAuth.signOut();
+            sendUserToLoginActivity();
         }
 
         return super.onOptionsItemSelected(item);
