@@ -5,16 +5,22 @@
 
 
     <item
-        android:title="Create Group"
+        android:title="@string/menu_create_group"
         android:id="@+id/main_create_group_option"
         app:showAsAction="never"
-
         />
+
     <item
-        android:title="Exit"
+        android:title="@string/menu_exit"
         android:id="@+id/main_exit_option"
         app:showAsAction="never"
+        />
 
+    <item
+        android:title="@string/menu_switch_on_bluetooth"
+        android:icon="@drawable/ic_bluetooth_on_off"
+        android:id="@+id/main_bluetooth_turn_on_off"
+        app:showAsAction="always"
         />
 
 </menu>

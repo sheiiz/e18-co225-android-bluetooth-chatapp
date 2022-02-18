@@ -1,7 +1,6 @@
 package com.example.chatapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+
     private Toolbar mToolbar;
     private ViewPager myViewPager;
     private TabLayout myTabLayout;
@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
+
+
+    Bluetooth myBluetooth = new Bluetooth();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         currentUser=mAuth.getCurrentUser();
 
-        mToolbar=findViewById(R.id.main_page_toolbar);
+        mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("ChatApp");
 
@@ -43,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
         myTabLayout=findViewById(R.id.main_tabs);
         myTabLayout.setupWithViewPager(myViewPager);
+
+        myBluetooth.context = this;
+        myBluetooth.initBluetooth();
+
     }
 
     @Override
@@ -73,12 +80,21 @@ public class MainActivity extends AppCompatActivity {
            // builder.setTitle();
             Intent groupIntent = new Intent(MainActivity.this,CreateGroupActivity.class);
             startActivity(groupIntent);
+            return true;
         }
+
         if(item.getItemId()==R.id.main_exit_option){
             mAuth.signOut();
             sendUserToLoginActivity();
+            return true;
+        }
+
+        if(item.getItemId() == R.id.main_bluetooth_turn_on_off){
+            myBluetooth.enableBluetooth();
         }
 
         return super.onOptionsItemSelected(item);
     }
-}
+
+
+    }
