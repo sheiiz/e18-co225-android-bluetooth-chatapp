@@ -83,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if(item.getItemId()==R.id.main_settings_option){
+            Intent settingsIntent=new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(settingsIntent);
+        }
+
         if(item.getItemId()==R.id.main_exit_option){
             mAuth.signOut();
             sendUserToLoginActivity();

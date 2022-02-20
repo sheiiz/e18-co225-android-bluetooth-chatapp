@@ -32,5 +32,4 @@
         android:layout_below="@+id/appBarLayout"
         android:layout_marginTop="-6dp" />
 
-
 </RelativeLayout>
