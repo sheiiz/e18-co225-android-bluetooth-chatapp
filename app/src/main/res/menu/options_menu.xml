@@ -10,6 +10,14 @@
         app:showAsAction="never"
         />
 
+
+    <item
+        android:title="Settings"
+        android:id="@+id/main_settings_option"
+        app:showAsAction="never"
+        />
+
+
     <item
         android:title="@string/menu_exit"
         android:id="@+id/main_exit_option"
