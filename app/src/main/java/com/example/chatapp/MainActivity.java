@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,10 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager myViewPager;
     private TabLayout myTabLayout;
     private TabAccessAdapter myTabAccessAdapter;
-
-    private FirebaseUser currentUser;
-    private FirebaseAuth mAuth;
-
+    Database skyChatDB;
+    Button login,register;
+    EditText email,password;
 
     Bluetooth myBluetooth = new Bluetooth();
 
@@ -32,33 +35,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        skyChatDB = new Database(this);
 
-        mAuth=FirebaseAuth.getInstance();
-        currentUser=mAuth.getCurrentUser();
 
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("ChatApp");
 
-        myViewPager=findViewById(R.id.main_tabs_pager);
-        myTabAccessAdapter= new TabAccessAdapter(getSupportFragmentManager());
+        myViewPager = findViewById(R.id.main_tabs_pager);
+        myTabAccessAdapter = new TabAccessAdapter(getSupportFragmentManager());
         myViewPager.setAdapter(myTabAccessAdapter);
 
-        myTabLayout=findViewById(R.id.main_tabs);
+        myTabLayout = findViewById(R.id.main_tabs);
         myTabLayout.setupWithViewPager(myViewPager);
 
         myBluetooth.context = this;
         myBluetooth.initBluetooth();
 
+        login = (Button) findViewById(R.id.login_button);
+        register = (Button) findViewById(R.id.register_button);
+        email = (EditText) findViewById(R.id.login_email);
+        password = (EditText) findViewById(R.id.login_password);
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(currentUser == null){
-            sendUserToLoginActivity();
-        }
-    }
+    //@Override
+    //protected void onStart() {
+     //   super.onStart();
+      //  if(true) {
+      //      sendUserToLoginActivity();
+      //  }
+    //}
 
     private void sendUserToLoginActivity() {
         Intent loginIntent = new Intent(MainActivity.this,LoginActivity.class);
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(item.getItemId()==R.id.main_exit_option){
-            mAuth.signOut();
+           // mAuth.signOut();
             sendUserToLoginActivity();
             return true;
         }

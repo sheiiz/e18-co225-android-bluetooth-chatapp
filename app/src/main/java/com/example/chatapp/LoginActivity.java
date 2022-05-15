@@ -15,23 +15,26 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     private Button LoginButton;
     private EditText UserEmail,UserPassword;
     private TextView NeedNewAccountLink,ForgetPasswordLink;
-    private FirebaseAuth mAuth;
+
     private ProgressDialog loadingBar;
+    Database skyChatDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth=FirebaseAuth.getInstance();
+
+        UserEmail = findViewById(R.id.login_email);
+        UserPassword = findViewById(R.id.login_password);
+        skyChatDB= new Database(this);
+
 
         InitializedFields();
         NeedNewAccountLink.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 AllowUserToLogin();
             }
         });
@@ -63,23 +67,17 @@ public class LoginActivity extends AppCompatActivity {
             loadingBar.setMessage("Please wait... ");
             loadingBar.setCanceledOnTouchOutside(true);
             loadingBar.show();
-            mAuth.signInWithEmailAndPassword(email,password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                sendUserToMainActivity();
-                                Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
 
-                            }
-                            else{
-                                String message = task.getException().toString();
-                                Toast.makeText(LoginActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+            Boolean checkPassword = skyChatDB.checkPASSWORD(email,password);
+            if(checkPassword==true){
+                Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show();
+                sendUserToMainActivity();
+            }
+            else{
+                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
+            }
+            loadingBar.dismiss();
 
-                            }
-                            loadingBar.dismiss();
-                        }
-                    });
         }
     }
 
