@@ -16,27 +16,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-            <ImageView
-                android:id="@+id/login_image"
+
+
+            <TextView
+                android:id="@+id/login_title"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@drawable/login"
-                android:layout_alignParentStart="true"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:scaleType="fitCenter"
+                android:text="Welcome to SkyChat"
+
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textAlignment="center"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 />
             <EditText
                 android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/login_image"
+                android:layout_below="@+id/login_title"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/inputs"
                 android:padding="4dp"
                 android:drawableStart="@drawable/email"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
                 />
@@ -51,39 +60,23 @@
                 android:background="@drawable/inputs"
                 android:padding="4dp"
                 android:drawableStart="@drawable/password"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
-                />
-            <TextView
-                android:id="@+id/forget_password_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/login_password"
-                android:text="Forget Password ?"
-
-                android:layout_marginTop="2dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="23dp"
-                android:textAlignment="textEnd"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 />
 
             <Button
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/forget_password_link"
-                android:padding="4dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginLeft="19dp"
-                android:layout_marginRight="19dp"
-                android:text="Login"
+                android:layout_below="@+id/login_password"
+                android:padding="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:text="Sign In"
                 android:textAllCaps="false"
-                android:textSize="24sp"
+                android:textSize="30sp"
                 android:textColor="@android:color/background_light"
                 android:background="@drawable/buttons"
                 />
@@ -96,12 +89,12 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="15dp"
 
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="23dp"
                 android:text="Don't have an account?"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
 
