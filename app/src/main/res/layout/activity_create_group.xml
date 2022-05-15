@@ -7,15 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".CreateGroupActivity">
 
+
     <include
         android:id="@+id/settings_toolbar"
         layout="@layout/app_bar_layout" />
+
+    <TextView
+        android:id="@+id/create_group_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/settings_toolbar"
+        android:text="Create a new group"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
 
     <ImageView
         android:id="@+id/set_profile_image"
         android:layout_width="match_parent"
         android:layout_height="254dp"
+        android:layout_below="@id/create_group_title"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="15dp"
         android:src="@drawable/group_pic" />
+
 
 
     <EditText
@@ -24,10 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/set_profile_image"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
-
-
         android:hint="Group Name"
         android:inputType="textMultiLine"
         android:textAlignment="center"
@@ -35,26 +56,23 @@
         android:textSize="24dp"
         android:padding="6sp"
         android:background="@drawable/inputs"
-
         />
+
+
     <Button
         android:id="@+id/creating_group_button"
         android:layout_below="@+id/set_group_name"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
         android:background="@drawable/buttons"
-        android:text="Create Group"
+        android:text="Create"
         android:textAllCaps="false"
         android:textColor="#fff"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
         />
-
-
 
 </RelativeLayout>
