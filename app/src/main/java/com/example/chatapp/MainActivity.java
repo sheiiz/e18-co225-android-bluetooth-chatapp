@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("ChatApp");
+        getSupportActionBar().setTitle("SkyChat");
 
         myViewPager = findViewById(R.id.main_tabs_pager);
         myTabAccessAdapter = new TabAccessAdapter(getSupportFragmentManager());
