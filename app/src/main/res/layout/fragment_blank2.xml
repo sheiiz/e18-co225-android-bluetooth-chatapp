@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/chat2"
+
     tools:context=".ChatsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ListView
+        android:id="@+id/listview_chats"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Chats"
-        android:textSize="50dp"/>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
