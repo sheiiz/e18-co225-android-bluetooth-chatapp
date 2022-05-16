@@ -1,15 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
     tools:context=".DevicesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--    <ProgressBar-->
+    <!--        android:id="@+id/progress_scan_devices"-->
+    <!--        android:layout_width="25dp"-->
+    <!--        android:layout_height="25dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:visibility="gone" />-->
+
+
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:padding="5dp"-->
+    <!--        android:textSize="22dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:text="Paired Devices" />-->
+
+    <!--    <ListView-->
+    <!--        android:id="@+id/list_paired_devices"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content" />-->
+
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:padding="5dp"-->
+    <!--        android:textSize="22dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:text="Available Devices" />-->
+
+    <!--    <ListView-->
+    <!--        android:id="@+id/list_available_devices"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content" />-->
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/pairedDeviceFragment"
+        android:name="com.example.chatapp.PairedDeviceFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Devices"
-        android:textSize="50dp" />
+        android:layout_weight="0.5" />
 
-</RelativeLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/availableDeviceFragment"
+        android:name="com.example.chatapp.AvailableDeviceFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"
+        android:orientation="horizontal"
+        android:paddingLeft="45dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="12dp">
+
+        <Button
+            android:id="@+id/btn_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="#7BB87D"
+            android:text="Scan For Devices" />
+
+        <Button
+            android:id="@+id/btn_visibility"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="#7BB87D"
+            android:text="Make discoverable" />
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+

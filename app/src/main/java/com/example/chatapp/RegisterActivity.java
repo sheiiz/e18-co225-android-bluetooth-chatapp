@@ -1,6 +1,5 @@
 package com.example.chatapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -70,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             Boolean checkUser = skyChatDB.checkUSERNAME(UserEmail.getText().toString());
             if(checkUser==false){
-                Boolean insert = skyChatDB.insertUser(email1,password1);
+                Boolean insert = skyChatDB.insertUSER(email1,password1);
                 if(insert==true){
                     Toast.makeText(RegisterActivity.this, "Sucessfull", Toast.LENGTH_SHORT).show();
 
