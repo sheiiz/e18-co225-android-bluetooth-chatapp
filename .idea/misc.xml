@@ -3,13 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.189" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.204" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/drawable/message_background.xml" value="0.189" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/drawable/messagebackgroun.xml" value="0.189" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/drawable/recieverchatdrawble.xml" value="0.189" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/drawable/senderchatdrawable.xml" value="0.189" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_connect_device.xml" value="0.16979166666666667" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_create_group.xml" value="0.16979166666666667" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_main.xml" value="0.21770833333333334" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_register.xml" value="0.16979166666666667" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_settings.xml" value="0.16979166666666667" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_single_chat.xml" value="0.176" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_specific_chat.xml" value="0.2125" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/activity_specificchat.xml" value="0.1765625" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/app_bar_layout.xml" value="0.16979166666666667" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/fragment_available_device.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/fragment_blank2.xml" value="0.16979166666666667" />
@@ -17,6 +25,8 @@
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/fragment_devices.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/fragment_paired_device.xml" value="0.21770833333333334" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/list_view_allignment.xml" value="0.19791666666666666" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/recieverchatlayout.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/layout/senderchatlayout.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProjects/e18-co225-android-bluetooth-chatapp/app/src/main/res/menu/options_menu.xml" value="0.17447916666666666" />
       </map>
     </option>

@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +21,7 @@ import android.widget.ListView;
 public class DevicesFragment extends Fragment {
 
     private View devicesFragmentView;
+    Button scan_btn, visibility_btn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,6 +70,28 @@ public class DevicesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         devicesFragmentView = inflater.inflate(R.layout.fragment_devices, container, false);
+        scan_btn = devicesFragmentView.findViewById(R.id.btn_scan);
+        visibility_btn = devicesFragmentView.findViewById(R.id.btn_visibility);
+
+        scan_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(MainActivity.myBluetooth.isBluetoothEnable()){
+                    MainActivity.myBluetooth.scan();
+                }
+                else{
+                    Toast.makeText(MainActivity.myBluetooth.context, "Bluetooth is not enabled", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        visibility_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.myBluetooth.makeDiscoverable();
+            }
+        });
 
         return devicesFragmentView;
     }

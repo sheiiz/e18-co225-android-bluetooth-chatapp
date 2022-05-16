@@ -1,5 +1,6 @@
 package com.example.chatapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,7 +66,16 @@ public class AvailableDeviceFragment extends Fragment {
                              Bundle savedInstanceState) {
         fragmentViewAvailableDevices = inflater.inflate(R.layout.fragment_available_device, container, false);
         listViewAvailableDevices = fragmentViewAvailableDevices.findViewById(R.id.list_available_devices);
-        listViewAvailableDevices.setAdapter(MainActivity.myBluetooth.getPairedDevices()); /*Change this to available devices list*/
+        listViewAvailableDevices.setAdapter(MainActivity.myBluetooth.getAvailableDevices());
+
+        listViewAvailableDevices.setOnItemClickListener((adapterView, view, i, l) -> {
+            String name = ((TextView) view).getText().toString();
+            Intent intent = new Intent(getActivity(), SingleChatActivity.class);
+            intent.putExtra("ReceiverName", name);
+            startActivity(intent);
+
+        });
+
         return fragmentViewAvailableDevices;
     }
 }

@@ -20,7 +20,7 @@ public class Bluetooth {
     public  DevicesFragment context1;
     private Set<BluetoothDevice> pairedDevices;
     private ArrayAdapter<String> adapterPairedDevices, adapterAvailableDevices;
-    private ArrayList<String> stringArrayList;
+    private ArrayList<String> stringArrayList = new ArrayList<String>();
 
 
     public void initBluetooth() {
@@ -62,13 +62,14 @@ public class Bluetooth {
     public ArrayAdapter<String> getAvailableDevices(){
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         context.registerReceiver(bluetoothDeviceListener, intentFilter);
-        adapterAvailableDevices = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_list_item_1,stringArrayList);
+        adapterAvailableDevices = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_list_item_1, stringArrayList);
         return adapterAvailableDevices;
     }
 
     @SuppressLint("MissingPermission")
     public void scan(){
         adapterAvailableDevices.clear();
+
         Toast.makeText(context, "Scan Started", Toast.LENGTH_SHORT).show();
 
         if (bluetoothAdapter.isDiscovering()) {
@@ -84,13 +85,9 @@ public class Bluetooth {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+            if (BluetoothDevice.ACTION_FOUND.equals(action))
+            {
                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-
-//                if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-//                    adapterAvailableDevices.add(device.getName() + "\n" + device.getAddress());
-//                }
-
                 stringArrayList.add(device.getName());
                 adapterAvailableDevices.notifyDataSetChanged();
             }
@@ -102,6 +99,10 @@ public class Bluetooth {
         Intent discoveryIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoveryIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300 );
         context.startActivity(discoveryIntent);
+    }
+
+    public boolean isBluetoothEnable(){
+        return bluetoothAdapter.isEnabled();
     }
 
 

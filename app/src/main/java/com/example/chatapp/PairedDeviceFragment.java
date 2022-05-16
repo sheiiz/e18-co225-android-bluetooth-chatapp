@@ -1,5 +1,6 @@
 package com.example.chatapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,9 +69,16 @@ public class PairedDeviceFragment extends Fragment {
         fragmentViewPairedDevices = inflater.inflate(R.layout.fragment_paired_device, container, false);
         listViewPairedDevices = fragmentViewPairedDevices.findViewById(R.id.list_paired_devices);
 
-
         listViewPairedDevices.setAdapter(MainActivity.myBluetooth.getPairedDevices());
 
+
+        listViewPairedDevices.setOnItemClickListener((adapterView, view, i, l) -> {
+            String name = ((TextView) view).getText().toString();
+            Intent intent = new Intent(getActivity(), SingleChatActivity.class);
+            intent.putExtra("ReceiverName", name);
+            startActivity(intent);
+
+        });
 
 
         return fragmentViewPairedDevices;
