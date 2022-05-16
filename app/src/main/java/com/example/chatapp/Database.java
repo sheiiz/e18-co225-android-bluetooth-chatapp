@@ -7,18 +7,26 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
     public static final String DBNAME = "SkyChat.db";
 
-    public Database( Context context) {
+    public Database(Context context) {
         super(context, "SkyChat.db", null, 1);
     }
+    public Database() {
+        super(null, "SkyChat.db", null, 1);
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase skyChatDB) {
+        skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
         skyChatDB.execSQL("create Table USERS(USERNAME TEXT PRIMARY KEY, PASSWORD TEXT)");
+
 
 
     }
@@ -89,5 +97,41 @@ public class Database extends SQLiteOpenHelper {
         else{
             return false;
         }
+    }
+    public Boolean checkGROUPNAME (String GROUP_NAME){
+
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+     //   skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM GROUPCHATS WHERE GROUPNAME = ?",new String[] {GROUP_NAME});
+        if(cursor.getCount()>0){return true;}
+        else return false;
+
+    }
+    public Boolean insertGroup(String GROUP_NAME,String GROUP_ADMIN){
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+       // skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("GROUPNAME",GROUP_NAME);
+        contentValues.put("GROUPADMIN",GROUP_ADMIN);
+        long result = skyChatDB.insert("GROUPCHATS",null,contentValues);
+        if(result==-1) return false;
+        else return true;
+
+
+
+
+    }
+
+    public  ArrayList<String>  getGroupNames(){
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+      ArrayList<String> groupList = new ArrayList<>();
+        String query = "SELECT * FROM GROUPCHATS";
+        Cursor cursor = skyChatDB.rawQuery(query,null);
+      while (cursor.moveToNext()){
+
+         groupList.add(cursor.getString(0));
+
+      }
+      return  groupList;
     }
 }
