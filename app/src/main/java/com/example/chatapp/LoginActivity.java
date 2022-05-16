@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button LoginButton;
     private EditText UserEmail,UserPassword;
     private TextView NeedNewAccountLink,ForgetPasswordLink;
-
+    public static String CurrentUser;
     private ProgressDialog loadingBar;
     Database skyChatDB;
     @Override
@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             Boolean checkPassword = skyChatDB.checkPASSWORD(email,password);
             if(checkPassword==true){
                 Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show();
+                CurrentUser=email;
                 sendUserToMainActivity();
             }
             else{
@@ -103,5 +104,10 @@ public class LoginActivity extends AppCompatActivity {
     private void sendUserToRegisterActivity() {
         Intent registerIntent = new Intent(LoginActivity.this,RegisterActivity.class);
         startActivity(registerIntent);
+    }
+
+
+    public static String getUserEmail() {
+        return CurrentUser;
     }
 }
