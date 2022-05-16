@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(insert==true){
                     Toast.makeText(RegisterActivity.this, "Sucessfull", Toast.LENGTH_SHORT).show();
 
-                    sendUserToMainActivity();
+                    sendUserToLoginActivity();
                 }
                 else{
                     Toast.makeText(RegisterActivity.this, "Unsucessfull", Toast.LENGTH_SHORT).show();
