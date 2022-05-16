@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Database skyChatDB;
     Button login,register;
     EditText email,password;
-
+    public static int count =0;
     Bluetooth myBluetooth = new Bluetooth();
 
     @Override
@@ -58,13 +58,16 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
     }
-    //@Override
-    //protected void onStart() {
-     //   super.onStart();
-      //  if(true) {
-      //      sendUserToLoginActivity();
-      //  }
-    //}
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(count==0){
+            sendUserToLoginActivity();
+        }
+        count++;
+
+
+    }
 
     private void sendUserToLoginActivity() {
         Intent loginIntent = new Intent(MainActivity.this,LoginActivity.class);

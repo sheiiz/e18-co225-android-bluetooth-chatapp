@@ -134,4 +134,20 @@ public class Database extends SQLiteOpenHelper {
       }
       return  groupList;
     }
+    public  ArrayList<String>  getChatNames(String CURRENT_USER){
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+
+        ArrayList<String> chatList = new ArrayList<>();
+        String query = "SELECT * FROM CHATS";
+        Cursor cursor = skyChatDB.rawQuery(query,null);
+        while (cursor.moveToNext()){
+            if(cursor.getString(0).equals(CURRENT_USER)){
+            chatList.add(cursor.getString(1));
+            }
+        }
+        return  chatList;
+    }
+
+
+
 }
