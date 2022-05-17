@@ -32,7 +32,7 @@
     <ImageButton
         android:id="@+id/set_profile_image"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_below="@id/change_settings_title"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="5dp"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/change_settings_password"
-        android:hint="New Email"
+        android:hint="Confirm Password"
         android:inputType="textEmailAddress"
         android:background="@drawable/inputs"
         android:padding="4dp"
