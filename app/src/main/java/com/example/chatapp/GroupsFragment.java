@@ -15,16 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChatsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class GroupsFragment extends Fragment {
 
     View groupView;
@@ -41,15 +38,19 @@ public class GroupsFragment extends Fragment {
 
 
 
-    private void setContentView(int fragment_groupchat) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        groupView = inflater.inflate(R.layout.activity_group_chat, container, false);
+        groupView = inflater.inflate(R.layout.group_fragment, container, false);
         skyChat= new Database(getActivity());
         listView = (ListView) groupView.findViewById(R.id.listview_groupchat);
         groupList=skyChat.getGroupNames();
@@ -63,6 +64,13 @@ public class GroupsFragment extends Fragment {
         listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
 
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            String name = ((TextView) view).getText().toString();
+            Intent intent = new Intent(getActivity(), GroupChatActivity.class);
+            intent.putExtra("ReceiverName", name);
+            startActivity(intent);
+
+        });
 
         return  groupView;
     }

@@ -2,21 +2,27 @@ package com.example.chatapp;
 
 import static com.example.chatapp.LoginActivity.getUserEmail;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SingleChatActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapp.Adapters.MessageAdapter;
+import com.example.chatapp.Models.User;
+import com.example.chatapp.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GroupChatActivity extends AppCompatActivity {
     Intent intent;
     TextView userName, userState;
     EditText getMessage;
@@ -30,24 +36,23 @@ public class SingleChatActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_chat);
 
-        userName = findViewById(R.id.Nameofspecificuser);
-        userState = findViewById(R.id.userState);
-        getMessage = findViewById(R.id.getmessage);
-        sendMessageButton = findViewById(R.id.imageviewsendmessage);
-        backButton = findViewById(R.id.backbuttonofspecificchat);
-        chatToolbar = findViewById(R.id.toolbarofspecificchat);
-        sendMessageCardView = findViewById(R.id.carviewofsendmessage);
-        msgRecycleView = findViewById(R.id.recyclerviewofspecific);
-        skyChatDB= new Database(this);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_group_chat);
+
+
+        userName = findViewById(R.id.Nameofspecificgroupuser);
+        userState = findViewById(R.id.groupuserState);
+        getMessage = findViewById(R.id.getgroupmessage);
+        sendMessageButton = findViewById(R.id.imageviewsendgroupmessage);
+        backButton = findViewById(R.id.backbuttonofspecificgroupchat);
+        chatToolbar = findViewById(R.id.toolbarofspecificgroupchat);
+        sendMessageCardView = findViewById(R.id.carviewofsendgroupmessage);
+        msgRecycleView = findViewById(R.id.recyclerviewofspecificgroup);
+        skyChatDB = new Database(this);
 
         intent = getIntent();
         String receiverName = intent.getStringExtra("ReceiverName");
-
-        //To store in SQLite
-        Update(receiverName);
 
         userName.setText(receiverName);
         userState.setText("Not Connected");
@@ -85,16 +90,22 @@ public class SingleChatActivity extends AppCompatActivity {
 
         String USER= getUserEmail();
 
-        Boolean insert = skyChatDB.insertChat(USER,FRIEND);
 
 
 
+        Boolean checkFriend = skyChatDB.checkFRIEND(FRIEND);
+        if(checkFriend==false){
+            Boolean insert = skyChatDB.insertChat(USER,FRIEND);
 
-
+        }
 
 
 
 
     }
 
+    private void sendUserToLoginActivity() {
+        Intent loginIntent = new Intent(GroupChatActivity.this,LoginActivity.class);
+        startActivity(loginIntent);
+    }
 }

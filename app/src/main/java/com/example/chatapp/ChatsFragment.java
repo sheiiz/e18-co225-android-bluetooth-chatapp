@@ -2,6 +2,7 @@ package com.example.chatapp;
 
 import static com.example.chatapp.LoginActivity.getUserEmail;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -52,6 +54,17 @@ public class ChatsFragment extends Fragment {
         );
         listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
+
+
+
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            String name = ((TextView) view).getText().toString();
+            Intent intent = new Intent(getActivity(), SingleChatActivity.class);
+            intent.putExtra("ReceiverName", name);
+            startActivity(intent);
+
+        });
+
 
 
         return  chatView;

@@ -31,12 +31,8 @@ public class CreateGroupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 createGroup();
 
-
-
             }
         });
-
-
 
     }
 
@@ -59,19 +55,13 @@ public class CreateGroupActivity extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(CreateGroupActivity.this, "Unsucessfull", Toast.LENGTH_SHORT).show();
-
                 }
-
             }
             else{
                 Toast.makeText(CreateGroupActivity.this, "Group already exist", Toast.LENGTH_SHORT).show();
 
             }
-
-
         }
-
-
     }
     private void sendUserToGroupChatActivity() {
         Intent loginIntent = new Intent(CreateGroupActivity.this,MainActivity.class);
