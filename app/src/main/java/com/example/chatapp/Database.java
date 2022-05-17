@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
     public static final String DBNAME = "SkyChat.db";
+    public static int chatID = 0;
 
 
     public Database(Context context) {
@@ -30,7 +31,8 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase skyChatDB) {
         skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
         skyChatDB.execSQL("create Table USERS(USERNAME TEXT PRIMARY KEY, PASSWORD TEXT)");
-        skyChatDB.execSQL("create Table CHATS(USER TEXT , FRIEND TEXT)");
+        skyChatDB.execSQL("create Table CHATS(CHATID INT PRIMARY KEY ,USER TEXT , FRIEND TEXT )");
+        skyChatDB.execSQL("create Table MESSAGES(MSGID INT PRIMARY KEY, CHATID INT ,TYPE TEXT , MSG TEXT , FOREIGN KEY (CHATID) REFERENCES CHATS(CHATID))");
 
     }
 
@@ -143,8 +145,8 @@ public class Database extends SQLiteOpenHelper {
         String query = "SELECT * FROM CHATS";
         Cursor cursor = skyChatDB.rawQuery(query,null);
         while (cursor.moveToNext()){
-            if(cursor.getString(0).equals(CURRENT_USER)){
-            chatList.add(cursor.getString(1));
+            if(cursor.getString(1).equals(CURRENT_USER)){
+            chatList.add(cursor.getString(2));
             }
         }
         return  chatList;
@@ -163,9 +165,29 @@ public class Database extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("USER",user);
         contentValues.put("FRIEND",friend);
+        contentValues.put("CHATID",chatID);
         Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE USER = ? AND FRIEND = ?",new String[] {user,friend});
         if(cursor.getCount()>0){return true;}
         long result = skyChatDB.insert("CHATS",null,contentValues);
+        if(result==-1) return false;
+        else {
+            chatID++;
+            return true;
+
+        }
+
+    }
+
+    public Boolean insertMsg(int msgID,int chatID, String type,String msg) {
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("MSGID",msgID);
+        contentValues.put("CHATID",chatID);
+        contentValues.put("TYPE",type);
+        contentValues.put("MSG",msg);
+
+        long result = skyChatDB.insert("MESSAGES",null,contentValues);
         if(result==-1) return false;
         else return true;
     }
@@ -193,5 +215,16 @@ public class Database extends SQLiteOpenHelper {
         db.update("GROUPCHATS", values, "GROUPADMIN =?", new String[]{email});
 
         return true;
+    }
+    int value;
+    public int getCHATID(String user, String receiverName) {
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE USER = ? AND FRIEND = ?",new String[] {user,receiverName});
+        while (cursor.moveToNext()){
+            value= cursor.getInt(2);
+        }
+        return value;
+
     }
 }

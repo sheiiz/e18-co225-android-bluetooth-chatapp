@@ -27,6 +27,8 @@ public class SingleChatActivity extends AppCompatActivity {
 
     String enteredMessage;
     Database skyChatDB;
+    String receiverName;
+    public static int msgID=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class SingleChatActivity extends AppCompatActivity {
         skyChatDB= new Database(this);
 
         intent = getIntent();
-        String receiverName = intent.getStringExtra("ReceiverName");
+        receiverName = intent.getStringExtra("ReceiverName");
 
         //To store in SQLite
         Update(receiverName);
@@ -75,6 +77,14 @@ public class SingleChatActivity extends AppCompatActivity {
 
                 }
                 else{
+                    String user = getUserEmail();
+                    int chatID = skyChatDB.getCHATID(user,receiverName);
+
+
+
+                    skyChatDB.insertMsg(msgID,chatID,"sent",enteredMessage);
+                    msgID++;
+
 
                 }
             }
