@@ -151,5 +151,20 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
+    public Boolean checkFRIEND(String FRIEND) {
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE FRIEND = ?",new String[] {FRIEND});
+        if(cursor.getCount()>0){return true;}
+        else return false;
+    }
 
+    public Boolean insertChat(String user, String friend) {
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("USER",user);
+        contentValues.put("FRIEND",friend);
+        long result = skyChatDB.insert("CHATS",null,contentValues);
+        if(result==-1) return false;
+        else return true;
+    }
 }
