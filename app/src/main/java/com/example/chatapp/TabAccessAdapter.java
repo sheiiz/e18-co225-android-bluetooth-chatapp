@@ -24,6 +24,7 @@ public class TabAccessAdapter extends FragmentPagerAdapter {
             case 0:
                 ChatsFragment chatsFragment= new ChatsFragment();
                 return chatsFragment;
+
             case 1:
                 GroupsFragment groupsFragment= new GroupsFragment();
                 return groupsFragment;
@@ -31,6 +32,7 @@ public class TabAccessAdapter extends FragmentPagerAdapter {
             case 2:
                 DevicesFragment devicesFragment=new DevicesFragment();
                 return devicesFragment;
+
             default:
                 return null;
 

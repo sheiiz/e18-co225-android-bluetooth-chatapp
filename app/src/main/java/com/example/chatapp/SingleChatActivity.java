@@ -49,7 +49,7 @@ public class SingleChatActivity extends AppCompatActivity {
         chatToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Put here what happened when touch the tool bar*/
+
             }
         });
 

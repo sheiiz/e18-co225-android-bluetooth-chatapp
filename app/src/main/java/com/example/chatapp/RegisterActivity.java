@@ -1,6 +1,5 @@
 package com.example.chatapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -13,13 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.ktx.Firebase;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private Button RegisterButton;
@@ -27,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView AlreadyHaveAccountLink;
 
     private ProgressDialog loadingBar;
-    private DatabaseReference RootReference;
+
     Database skyChatDB;
 
     @Override
@@ -76,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             Boolean checkUser = skyChatDB.checkUSERNAME(UserEmail.getText().toString());
             if(checkUser==false){
-                Boolean insert = skyChatDB.insertUser(email1,password1);
+                Boolean insert = skyChatDB.insertUSER(email1,password1);
                 if(insert==true){
                     Toast.makeText(RegisterActivity.this, "Sucessfull", Toast.LENGTH_SHORT).show();
 

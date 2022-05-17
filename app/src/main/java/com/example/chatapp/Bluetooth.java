@@ -87,6 +87,7 @@ public class Bluetooth {
 
             if (BluetoothDevice.ACTION_FOUND.equals(action))
             {
+
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 stringArrayList.add(device.getName());
                 adapterAvailableDevices.notifyDataSetChanged();

@@ -6,20 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager myViewPager;
     private TabLayout myTabLayout;
     private TabAccessAdapter myTabAccessAdapter;
+    private ListView listPairedDevices;
     Database skyChatDB;
     Button login,register;
     EditText email,password;
@@ -35,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static Bluetooth myBluetooth = new Bluetooth();
 
+
     private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         skyChatDB = new Database(this);
-
 
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
@@ -61,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.register_button);
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
+
+        listPairedDevices = (ListView)findViewById(R.id.list_paired_devices);
+
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private void sendUserToLoginActivity() {
         Intent loginIntent = new Intent(MainActivity.this,LoginActivity.class);
