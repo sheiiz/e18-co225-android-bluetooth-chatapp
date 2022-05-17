@@ -167,4 +167,29 @@ public class Database extends SQLiteOpenHelper {
         if(result==-1) return false;
         else return true;
     }
+
+    public Boolean updateChats(String email,String new_email) {
+        SQLiteDatabase skyChatDB = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("USER", new_email);
+
+        db.update("CHATS", values, "USER =?", new String[]{email});
+
+        return true;
+    }
+
+    public Boolean updateGroupAdmin(String email, String new_email) {
+        SQLiteDatabase skyChatDB = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("GROUPADMIN", new_email);
+
+
+
+
+        db.update("GROUPCHATS", values, "GROUPADMIN =?", new String[]{email});
+
+        return true;
+    }
 }

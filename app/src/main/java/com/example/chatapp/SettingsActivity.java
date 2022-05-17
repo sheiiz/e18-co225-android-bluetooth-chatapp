@@ -64,6 +64,8 @@ public class SettingsActivity extends AppCompatActivity {
             Boolean checkUser = skyChatDB.checkUSERNAME(NewUserEmail.getText().toString());
             if(checkUser==false){
                 Boolean insert = skyChatDB.updateUser(email,new_email,new_password);
+                Boolean insert2 = skyChatDB.updateChats(email,new_email);
+                Boolean insert3 = skyChatDB.updateGroupAdmin(email,new_email);
                 if(insert==true){
                     Toast.makeText(SettingsActivity.this, "Sucessfull", Toast.LENGTH_SHORT).show();
 
