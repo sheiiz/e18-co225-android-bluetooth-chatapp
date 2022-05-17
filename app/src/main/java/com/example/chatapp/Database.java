@@ -30,7 +30,7 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase skyChatDB) {
         skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
         skyChatDB.execSQL("create Table USERS(USERNAME TEXT PRIMARY KEY, PASSWORD TEXT)");
-
+        skyChatDB.execSQL("create Table CHATS(USER TEXT , FRIEND TEXT)");
 
     }
 
@@ -103,7 +103,7 @@ public class Database extends SQLiteOpenHelper {
     public Boolean checkGROUPNAME (String GROUP_NAME){
 
         SQLiteDatabase skyChatDB = this.getWritableDatabase();
-     //   skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
+
         Cursor cursor = skyChatDB.rawQuery("SELECT * FROM GROUPCHATS WHERE GROUPNAME = ?",new String[] {GROUP_NAME});
         if(cursor.getCount()>0){return true;}
         else return false;
@@ -111,7 +111,7 @@ public class Database extends SQLiteOpenHelper {
     }
     public Boolean insertGroup(String GROUP_NAME,String GROUP_ADMIN){
         SQLiteDatabase skyChatDB = this.getWritableDatabase();
-       // skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("GROUPNAME",GROUP_NAME);
         contentValues.put("GROUPADMIN",GROUP_ADMIN);
@@ -163,6 +163,8 @@ public class Database extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("USER",user);
         contentValues.put("FRIEND",friend);
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE USER = ? AND FRIEND = ?",new String[] {user,friend});
+        if(cursor.getCount()>0){return true;}
         long result = skyChatDB.insert("CHATS",null,contentValues);
         if(result==-1) return false;
         else return true;
