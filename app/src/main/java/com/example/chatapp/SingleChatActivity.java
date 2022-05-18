@@ -41,7 +41,7 @@ public class SingleChatActivity extends AppCompatActivity {
 
     public static String receiverName;
 
-    public static int msgID=20;
+    public static int msgID=30;
     String enteredMessage;
 
     ChatUtils chatUtils;

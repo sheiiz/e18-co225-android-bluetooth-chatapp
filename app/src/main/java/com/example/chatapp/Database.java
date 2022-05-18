@@ -207,6 +207,7 @@ public class Database extends SQLiteOpenHelper {
             Messages msg;
             if(cursor.getString(1).equals(chatID)){
                 msg = new Messages(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3));
+                msg = new Messages(6,chatID,"sent","check");
                 messageArrayList.add(msg);
             }
         }

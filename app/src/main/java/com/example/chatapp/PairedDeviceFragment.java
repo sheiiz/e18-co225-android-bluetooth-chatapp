@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,14 +73,16 @@ public class PairedDeviceFragment extends Fragment {
         listViewPairedDevices.setAdapter(MainActivity.myBluetooth.getPairedDevices());
 
 
-        listViewPairedDevices.setOnItemClickListener((adapterView, view, i, l) -> {
-            String name = ((TextView) view).getText().toString();
-            Intent intent = new Intent(getActivity(), SingleChatActivity.class);
-            intent.putExtra("ReceiverName", name);
-            intent.putExtra("deviceIndex", Integer.toString(i));
-            intent.putExtra("deviceType", "Paired");
-            startActivity(intent);
-
+        listViewPairedDevices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = ((TextView) view).getText().toString();
+                Intent intent = new Intent(getActivity(), SingleChatActivity.class);
+                intent.putExtra("ReceiverName", name);
+                intent.putExtra("deviceIndex", Integer.toString(i));
+                intent.putExtra("deviceType", "Paired");
+                startActivity(intent);
+            }
         });
 
 
