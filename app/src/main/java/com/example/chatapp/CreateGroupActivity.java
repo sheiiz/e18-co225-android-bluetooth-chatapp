@@ -10,11 +10,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class CreateGroupActivity extends AppCompatActivity {
     private EditText groupName;
     private Button createButton;
+    private ImageButton backButton;
     Database skyChatDB;
 
 
@@ -26,10 +28,19 @@ public class CreateGroupActivity extends AppCompatActivity {
         skyChatDB= new Database(this);
         groupName = (EditText) findViewById(R.id.set_group_name);
         createButton = (Button) findViewById(R.id.creating_group_button);
+        backButton = (ImageButton) findViewById(R.id.backbuttonofCreateGroup);
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createGroup();
+
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
 
             }
         });
