@@ -21,6 +21,8 @@ public class Bluetooth {
     private Set<BluetoothDevice> pairedDevices;
     private ArrayAdapter<String> adapterPairedDevices, adapterAvailableDevices;
     private ArrayList<String> stringArrayList = new ArrayList<String>();
+    private ArrayList<BluetoothDevice> btArrayForAvailableDevices = new ArrayList<BluetoothDevice>();
+    private BluetoothDevice[] btArrayForPairedDevices;
 
 
     public void initBluetooth() {
@@ -46,16 +48,26 @@ public class Bluetooth {
     public ArrayAdapter<String> getPairedDevices(){
         pairedDevices = bluetoothAdapter.getBondedDevices();
         String[] strings = new String[pairedDevices.size()];
+        btArrayForPairedDevices = new BluetoothDevice[pairedDevices.size()];
         int index = 0;
 
         if (pairedDevices != null && pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
+                btArrayForPairedDevices[index] = device;
                 strings[index] = device.getName();
                 index++;
             }
             adapterPairedDevices = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,strings);
         }
         return adapterPairedDevices;
+    }
+
+    public BluetoothDevice getPairedDevice(int i){
+        return btArrayForPairedDevices[i];
+    }
+
+    public BluetoothDevice getAvailableDevice(int i){
+        return btArrayForAvailableDevices.get(i);
     }
 
 
@@ -69,6 +81,7 @@ public class Bluetooth {
     @SuppressLint("MissingPermission")
     public void scan(){
         adapterAvailableDevices.clear();
+        stringArrayList.clear();
 
         Toast.makeText(context, "Scan Started", Toast.LENGTH_SHORT).show();
 
@@ -87,10 +100,13 @@ public class Bluetooth {
 
             if (BluetoothDevice.ACTION_FOUND.equals(action))
             {
-
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                stringArrayList.add(device.getName());
-                adapterAvailableDevices.notifyDataSetChanged();
+                if(!stringArrayList.contains(device.getName())){
+                    stringArrayList.add(device.getName());
+                    btArrayForAvailableDevices.add(device);
+                    adapterAvailableDevices.notifyDataSetChanged();
+                }
+
             }
         }
     };

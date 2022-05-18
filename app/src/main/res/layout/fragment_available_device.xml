@@ -16,7 +16,7 @@
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:background="#7BB87D"
+        android:background="#89A1D7"
         android:text="Available Devices" />
 
     <ListView

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background2"
     android:orientation="vertical"
     tools:context=".DevicesFragment">
 
@@ -73,20 +73,21 @@
             android:id="@+id/btn_scan"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:backgroundTint="#7BB87D"
+            android:backgroundTint="#586EA1"
+            android:textColor="@color/white"
             android:text="Scan For Devices" />
 
         <Button
             android:id="@+id/btn_visibility"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:backgroundTint="#7BB87D"
+            android:backgroundTint="#586EA1"
+            android:textColor="@color/white"
             android:text="Make discoverable" />
     </LinearLayout>
 
 
 </LinearLayout>
-
 
 
 
