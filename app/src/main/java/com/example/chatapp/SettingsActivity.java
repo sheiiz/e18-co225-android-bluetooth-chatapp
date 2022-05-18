@@ -10,11 +10,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
     private Button SaveButton;
     private EditText UserPassword,NewUserEmail,NewUserPassword,NewUserConfirmPassword;
+    private ImageButton backButton;
 
     Database skyChatDB;
 
@@ -32,13 +34,19 @@ public class SettingsActivity extends AppCompatActivity {
         NewUserConfirmPassword = findViewById(R.id.change_settings_confirm_password);
         skyChatDB= new Database(this);
         SaveButton = (Button) findViewById(R.id.save_button);
+        backButton = (ImageButton) findViewById(R.id.backbuttonofupdateprofile);
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Update();
 
-
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
 
             }
         });
