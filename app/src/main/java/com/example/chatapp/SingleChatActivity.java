@@ -207,15 +207,8 @@ public class SingleChatActivity extends AppCompatActivity {
 
         }
 
-
-
-
-
-
-
-
-
     }
+
     public static void setReceiverMsg(String enteredMessage){
 
         String user = getUserEmail();
