@@ -33,8 +33,8 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase skyChatDB) {
         skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
         skyChatDB.execSQL("create Table USERS(USERNAME TEXT PRIMARY KEY, PASSWORD TEXT)");
-        skyChatDB.execSQL("create Table CHATS(CHATID INT PRIMARY KEY ,USER TEXT , FRIEND TEXT )");
-        skyChatDB.execSQL("create Table MESSAGES(MSGID INT PRIMARY KEY, CHATID INT ,TYPE TEXT , MSG TEXT , FOREIGN KEY (CHATID) REFERENCES CHATS(CHATID))");
+        skyChatDB.execSQL("create Table CHATS(CHATID INT PRIMARY KEY  ,USER TEXT , FRIEND TEXT )");
+        skyChatDB.execSQL("create Table MESSAGES(MSGID INT PRIMARY KEY , CHATID INT ,TYPE TEXT , MSG TEXT , FOREIGN KEY (CHATID) REFERENCES CHATS(CHATID))");
 
     }
 
@@ -176,7 +176,7 @@ public class Database extends SQLiteOpenHelper {
         long result = skyChatDB.insert("CHATS",null,contentValues);
         if(result==-1) return false;
         else {
-            chatID++;
+
             return true;
 
         }
@@ -205,9 +205,9 @@ public class Database extends SQLiteOpenHelper {
         Cursor cursor = skyChatDB.rawQuery(query,null);
         while (cursor.moveToNext()){
             Messages msg;
-            if(cursor.getString(1).equals(chatID)){
+            if(cursor.getInt(1)==chatID){
                 msg = new Messages(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3));
-                msg = new Messages(6,chatID,"sent","check");
+               // msg = new Messages(6,chatID,"sent","check");
                 messageArrayList.add(msg);
             }
         }

@@ -4,23 +4,14 @@ import static com.example.chatapp.LoginActivity.getUserEmail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.chatapp.Adapters.MessageAdapter;
-import com.example.chatapp.Models.User;
-import com.example.chatapp.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GroupChatActivity extends AppCompatActivity {
     Intent intent;
