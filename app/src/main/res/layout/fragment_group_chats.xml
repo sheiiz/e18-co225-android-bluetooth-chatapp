@@ -4,13 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".ChatsFragment">
+    tools:context=".GroupsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <ListView
-        android:id="@+id/listview_chats"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/groupleChatRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+
+
 
 </RelativeLayout>

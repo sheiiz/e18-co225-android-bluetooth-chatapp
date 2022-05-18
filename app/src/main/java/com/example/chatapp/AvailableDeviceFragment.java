@@ -72,6 +72,8 @@ public class AvailableDeviceFragment extends Fragment {
             String name = ((TextView) view).getText().toString();
             Intent intent = new Intent(getActivity(), SingleChatActivity.class);
             intent.putExtra("ReceiverName", name);
+            intent.putExtra("deviceIndex", Integer.toString(i));
+            intent.putExtra("deviceType", "Available");
             startActivity(intent);
 
         });

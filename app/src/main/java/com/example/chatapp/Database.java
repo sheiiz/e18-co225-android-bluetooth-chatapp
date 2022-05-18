@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.fragment.app.Fragment;
 
+
+
 import java.util.ArrayList;
 
 
@@ -163,11 +165,14 @@ public class Database extends SQLiteOpenHelper {
     public Boolean insertChat(String user, String friend) {
         SQLiteDatabase skyChatDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        chatID++;
+        contentValues.put("CHATID",chatID);
         contentValues.put("USER",user);
         contentValues.put("FRIEND",friend);
-        contentValues.put("CHATID",chatID);
-        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE USER = ? AND FRIEND = ?",new String[] {user,friend});
+
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE  FRIEND = ? AND USER = ?",new String[] {friend,user});
         if(cursor.getCount()>0){return true;}
+
         long result = skyChatDB.insert("CHATS",null,contentValues);
         if(result==-1) return false;
         else {
@@ -191,6 +196,24 @@ public class Database extends SQLiteOpenHelper {
         if(result==-1) return false;
         else return true;
     }
+    public ArrayList<Messages> getMsg(int chatID) {
+        SQLiteDatabase skyChatDB = this.getReadableDatabase();
+        ArrayList<Messages> messageArrayList = new ArrayList<>();
+
+
+        String query = "SELECT * FROM MESSAGES ";
+        Cursor cursor = skyChatDB.rawQuery(query,null);
+        while (cursor.moveToNext()){
+            Messages msg;
+            if(cursor.getString(1).equals(chatID)){
+                msg = new Messages(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3));
+                messageArrayList.add(msg);
+            }
+        }
+        return  messageArrayList;
+    }
+
+
 
     public Boolean updateChats(String email,String new_email) {
         SQLiteDatabase skyChatDB = this.getReadableDatabase();
@@ -222,7 +245,7 @@ public class Database extends SQLiteOpenHelper {
 
         Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE USER = ? AND FRIEND = ?",new String[] {user,receiverName});
         while (cursor.moveToNext()){
-            value= cursor.getInt(2);
+            value= cursor.getInt(0);
         }
         return value;
 

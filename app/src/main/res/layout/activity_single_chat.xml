@@ -8,13 +8,12 @@
     tools:context=".SingleChatActivity">
 
 
-
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarofspecificchat"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="0dp"
-        android:background="#233357"
-        android:id="@+id/toolbarofspecificchat">
+        android:background="#233357">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -87,16 +86,38 @@
 
             </TextView>
 
+            <Button
+                android:id="@+id/btn_listen"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="240dp"
+                android:background="@android:color/transparent"
+                android:text="Listen"
+                android:textColor="#D6D8E1"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_connect"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="300dp"
+                android:background="@android:color/transparent"
+                android:text="Connect"
+                android:textColor="#D6D8E1"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
 
         </RelativeLayout>
-
-
 
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewofspecific"
+        android:id="@+id/recyclerviewofsinglechat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/getmessage"

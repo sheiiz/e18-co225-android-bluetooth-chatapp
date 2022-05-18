@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("SkyChat");
+
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#FFFFFF'> SkyChat </font>"));
 
         myViewPager = findViewById(R.id.main_tabs_pager);
         myTabAccessAdapter = new TabAccessAdapter(getSupportFragmentManager());
