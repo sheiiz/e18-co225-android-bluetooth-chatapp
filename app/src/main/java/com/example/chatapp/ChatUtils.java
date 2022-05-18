@@ -3,7 +3,6 @@ package com.example.chatapp;
 import static com.example.chatapp.LoginActivity.getUserEmail;
 
 
-import static com.example.chatapp.SingleChatActivity.msgID;
 import static com.example.chatapp.SingleChatActivity.setReceiverMsg;
 
 import android.annotation.SuppressLint;

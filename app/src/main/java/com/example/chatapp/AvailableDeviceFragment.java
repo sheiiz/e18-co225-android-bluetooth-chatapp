@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -68,14 +69,16 @@ public class AvailableDeviceFragment extends Fragment {
         listViewAvailableDevices = fragmentViewAvailableDevices.findViewById(R.id.list_available_devices);
         listViewAvailableDevices.setAdapter(MainActivity.myBluetooth.getAvailableDevices());
 
-        listViewAvailableDevices.setOnItemClickListener((adapterView, view, i, l) -> {
-            String name = ((TextView) view).getText().toString();
-            Intent intent = new Intent(getActivity(), SingleChatActivity.class);
-            intent.putExtra("ReceiverName", name);
-            intent.putExtra("deviceIndex", Integer.toString(i));
-            intent.putExtra("deviceType", "Available");
-            startActivity(intent);
-
+        listViewAvailableDevices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = ((TextView) view).getText().toString();
+                Intent intent = new Intent(getActivity(), SingleChatActivity.class);
+                intent.putExtra("ReceiverName", name);
+                intent.putExtra("deviceIndex", Integer.toString(i));
+                intent.putExtra("deviceType", "Available");
+                startActivity(intent);
+            }
         });
 
         return fragmentViewAvailableDevices;

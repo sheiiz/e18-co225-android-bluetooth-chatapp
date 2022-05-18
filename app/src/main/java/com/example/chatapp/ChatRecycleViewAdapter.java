@@ -39,7 +39,6 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter<ChatRecycleView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // What happens when select a chat
 
             }

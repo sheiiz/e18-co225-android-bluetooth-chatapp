@@ -35,13 +35,13 @@ public class SingleChatActivity extends AppCompatActivity {
     CardView sendMessageCardView;
     RecyclerView msgRecycleView;
     BluetoothDevice device;
-    MessagesAdapter messagesAdapter;
+    public static MessagesAdapter messagesAdapter;
     LinearLayoutManager linearLayoutManager;
-    ArrayList<Messages> messagesArrayList = new ArrayList<>();
+    public static ArrayList<Messages> messagesArrayList = new ArrayList<>();
 
     public static String receiverName;
 
-    public static int msgID=20;
+    public static int msgID=0;
     String enteredMessage;
 
     ChatUtils chatUtils;
@@ -99,10 +99,10 @@ public class SingleChatActivity extends AppCompatActivity {
         /*--------------------------------------------------------------------------------------------------
         /*--------------------------------------------------------------------------------------------------*/
         messagesArrayList.clear();
-        messagesArrayList.add(new Messages(1, 6, "sent", "hiiii"));
+      
 
         int chatID = skyChatDB.getCHATID(getUserEmail(),receiverName);
-        messagesArrayList=skyChatDB.getMsg(chatID);
+        messagesArrayList.addAll(skyChatDB.getMsg(chatID));
 
 
         linearLayoutManager=new LinearLayoutManager(SingleChatActivity.this);
@@ -175,6 +175,15 @@ public class SingleChatActivity extends AppCompatActivity {
                     msgID++;
                     skyChatDB.insertMsg(msgID,chatID,"sent",enteredMessage);
 
+                    Messages msg = new Messages(msgID,chatID,"sent",enteredMessage);
+                    messagesArrayList.add(msg);
+
+                    messagesAdapter.notifyDataSetChanged();
+
+
+
+
+
                 }
                 else{
                     Toast.makeText(SingleChatActivity.this, "Connection not established", Toast.LENGTH_SHORT).show();
@@ -213,6 +222,12 @@ public class SingleChatActivity extends AppCompatActivity {
         int chatID = skyChatDB.getCHATID(user,receiverName);
         msgID++;
         skyChatDB.insertMsg(msgID,chatID,"received",enteredMessage);
+
+        Messages msg = new Messages(msgID,chatID,"received",enteredMessage);
+        messagesArrayList.add(msg);
+
+        messagesAdapter.notifyDataSetChanged();
+
 
     }
 
