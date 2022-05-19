@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">ChatApp</string>
+    <string name="app_name">SkyChat</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_create_group">Create New Group</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_switch_on_bluetooth">Switch on Bluetooth</string>
+    <string name="menu_search">Search</string>
 </resources>

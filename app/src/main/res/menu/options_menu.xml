@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:title="@string/menu_create_group"
+        android:id="@+id/main_create_group_option"
+        app:showAsAction="never"
+        />
+
+
+    <item
+        android:title="Settings"
+        android:id="@+id/main_settings_option"
+        app:showAsAction="never"
+        />
+
+
+    <item
+        android:title="@string/menu_exit"
+        android:id="@+id/main_exit_option"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:title="@string/menu_switch_on_bluetooth"
+        android:icon="@drawable/ic_bluetooth_on_off"
+        android:id="@+id/main_bluetooth_turn_on_off"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:title="@string/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:id="@+id/main_search"
+        app:showAsAction="always"
+        />
+
+</menu>

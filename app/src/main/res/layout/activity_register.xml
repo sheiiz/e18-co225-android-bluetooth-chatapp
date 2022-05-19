@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DBE4EC"
+    tools:context=".RegisterActivity">
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/register_title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginLeft="40dp"-->
+
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginRight="40dp"-->
+<!--        android:text="Create a New Account"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="34sp"-->
+<!--        android:textStyle="bold" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/set_profile_image"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="250dp"-->
+<!--        android:layout_below="@id/register_title"-->
+<!--        android:layout_marginLeft="15dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginRight="15dp"-->
+<!--        android:src="@drawable/profile_image" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/register_email"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/set_profile_image"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginLeft="17dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginRight="17dp"-->
+<!--        android:background="@drawable/inputs"-->
+<!--        android:drawableStart="@drawable/email"-->
+<!--        android:hint="Email"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:padding="4dp" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/register_password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/register_email"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginLeft="17dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_marginRight="17dp"-->
+<!--        android:background="@drawable/inputs"-->
+<!--        android:drawableStart="@drawable/password"-->
+<!--        android:hint="Password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:padding="4dp" />-->
+
+
+<!--    <Button-->
+<!--        android:id="@+id/register_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/register_password"-->
+<!--        android:layout_marginLeft="100dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginRight="100dp"-->
+<!--        android:background="@drawable/buttons"-->
+<!--        android:padding="5dp"-->
+<!--        android:text="Sign Up"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@android:color/background_light"-->
+<!--        android:textSize="30sp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/already_have_account_link"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/register_button"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginLeft="15dp"-->
+
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginRight="23dp"-->
+<!--        android:text="Already have an account?"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold" />-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/set_profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/raleway"
+        android:text="Create A New Account"
+        android:textColor="#233357"
+        android:textSize="30sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_above="@+id/register_email"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="80dp"
+        android:id="@+id/set_profile_image"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="130dp">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/defaultprofile"
+            android:id="@+id/getuserimageinimageview"
+            android:scaleType="centerCrop">
+
+        </ImageView>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/register_password"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:gravity="center"
+        android:hint="Enter User Name"
+        android:inputType="textCapWords">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="70dp"
+        android:gravity="center"
+        android:hint="Enter Password"
+        android:inputType="textPassword">
+
+    </EditText>
+
+    <android.widget.Button
+        android:id="@+id/register_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/register_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#586EA1"
+        android:text="Sign up"
+        android:textColor="@color/white"
+
+        android:textStyle="bold">
+
+    </android.widget.Button>
+
+    <TextView
+        android:id="@+id/already_have_account_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_button"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:text="Already have an account?"
+        android:textColor="#303030"
+        android:textSize="17dp">
+
+    </TextView>
+
+
+
+
+
+</RelativeLayout>
