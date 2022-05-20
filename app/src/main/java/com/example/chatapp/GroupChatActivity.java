@@ -77,21 +77,15 @@ public class GroupChatActivity extends AppCompatActivity {
         });
 
     }
+
     private void Update(String FRIEND){
 
         String USER= getUserEmail();
 
-
-
-
         Boolean checkFriend = skyChatDB.checkFRIEND(FRIEND);
         if(checkFriend==false){
-            Boolean insert = skyChatDB.insertChat(USER,FRIEND);
-
+            Boolean insert = skyChatDB.insertGroup(USER,FRIEND);
         }
-
-
-
 
     }
 

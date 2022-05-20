@@ -115,7 +115,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_above="@+id/register_email"
+        android:layout_above="@+id/register_username"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="80dp"
         android:id="@+id/set_profile_image"
@@ -126,7 +126,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/defaultprofile"
+            android:src="@drawable/default_profile"
             android:id="@+id/getuserimageinimageview"
             android:scaleType="centerCrop">
 
@@ -138,7 +138,7 @@
 
 
     <EditText
-        android:id="@+id/register_email"
+        android:id="@+id/register_username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/register_password"
@@ -146,7 +146,7 @@
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         android:gravity="center"
-        android:hint="Enter User Name"
+        android:hint="Username"
         android:inputType="textCapWords">
 
     </EditText>
@@ -157,10 +157,25 @@
         android:layout_height="50dp"
         android:layout_centerInParent="true"
         android:layout_marginLeft="70dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="70dp"
         android:gravity="center"
-        android:hint="Enter Password"
+        android:hint="Password"
+        android:inputType="textPassword">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/register_confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/register_password"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="70dp"
+        android:gravity="center"
+        android:hint="Confirm Password"
         android:inputType="textPassword">
 
     </EditText>
@@ -169,7 +184,7 @@
         android:id="@+id/register_button"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/register_password"
+        android:layout_below="@+id/register_confirm_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="#586EA1"

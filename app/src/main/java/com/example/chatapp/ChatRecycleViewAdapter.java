@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,10 +37,17 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter<ChatRecycleView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.particularUserName.setText(names.get(position));
+        String name = names.get(position);
+        int pos = position;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // What happens when select a chat
+                Toast.makeText(context, "Clicked item", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, SingleChatActivity.class);
+                intent.putExtra("ReceiverName", name);
+                intent.putExtra("deviceIndex", Integer.toString(pos));
+                intent.putExtra("deviceType", "PreviousChat");
+                context.startActivity(intent);
 
             }
         });

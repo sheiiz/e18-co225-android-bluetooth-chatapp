@@ -1,6 +1,5 @@
 package com.example.chatapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -12,9 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        UserEmail = findViewById(R.id.login_email);
+        UserEmail = findViewById(R.id.login_username);
         UserPassword = findViewById(R.id.login_password);
         skyChatDB= new Database(this);
 
@@ -84,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void InitializedFields() {
         LoginButton = (Button) findViewById(R.id.login_button);
-        UserEmail = (EditText) findViewById(R.id.login_email);
+        UserEmail = (EditText) findViewById(R.id.login_username);
         UserPassword = (EditText) findViewById(R.id.login_password);
         NeedNewAccountLink = (TextView) findViewById(R.id.do_not_have_account_link);
         loadingBar = new ProgressDialog(this);

@@ -29,12 +29,12 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType==ITEM_SEND)
         {
-            View view= LayoutInflater.from(context).inflate(R.layout.senderchatlayout,parent,false);
+            View view= LayoutInflater.from(context).inflate(R.layout.sender_chat_layout,parent,false);
             return new SenderViewHolder(view);
         }
         else
         {
-            View view= LayoutInflater.from(context).inflate(R.layout.recieverchatlayout,parent,false);
+            View view= LayoutInflater.from(context).inflate(R.layout.reciever_chat_layout,parent,false);
             return new RecieverViewHolder(view);
         }
     }

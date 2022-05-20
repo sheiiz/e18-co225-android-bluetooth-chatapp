@@ -19,6 +19,11 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class SingleChatActivity extends AppCompatActivity {
@@ -67,41 +72,35 @@ public class SingleChatActivity extends AppCompatActivity {
         chatUtils = new ChatUtils();
         intent = getIntent();
 
+        int chatID = skyChatDB.getCHATID(getUserEmail(),intent.getStringExtra("ReceiverName"));
 
         receiverName = intent.getStringExtra("ReceiverName");
 
         if(receiverName.length()>12){
             receiverName = receiverName.substring(0,11)+" ...";
         }
+
         //To store in SQLite
-        Update(receiverName);
+        Update(intent.getStringExtra("ReceiverName"));
 
         userName.setText(receiverName);
         userState.setText(chatUtils.status);
 
-         String receiverIndex = intent.getStringExtra("deviceIndex");
          String deviceType = intent.getStringExtra("deviceType");
 
          if(deviceType.equals("Paired")){
+             String receiverIndex = intent.getStringExtra("deviceIndex");
              device = MainActivity.myBluetooth.getPairedDevice(Integer.parseInt(receiverIndex));
-         }else{
+         }else if(deviceType.equals("Available")){
+             String receiverIndex = intent.getStringExtra("deviceIndex");
              device = MainActivity.myBluetooth.getAvailableDevice(Integer.parseInt(receiverIndex));
+         }else{
+             // Need to implement this later
+             device = null;
          }
 
-        /*--------------------------------------------------------------------------------------------------
-        /*----- Delete this part ---------
-         messagesArrayList.clear();
-        messagesArrayList.add(new Messages("hello", "sent", "1", "5","1"));
-        messagesArrayList.add(new Messages("My name is shehan madhusanka", "sent", "1", "5","1"));
-        messagesArrayList.add(new Messages("Im fine thank you", "receive", "1", "5","1"));
-        messagesArrayList.add(new Messages("hello", "sent", "1", "5","1"));
-        messagesArrayList.add(new Messages("Bye", "receive", "1", "5","1"));
-        /*--------------------------------------------------------------------------------------------------
-        /*--------------------------------------------------------------------------------------------------*/
-        messagesArrayList.clear();
-      
 
-        int chatID = skyChatDB.getCHATID(getUserEmail(),receiverName);
+        messagesArrayList.clear();
         messagesArrayList.addAll(skyChatDB.getMsg(chatID));
 
 
@@ -112,14 +111,6 @@ public class SingleChatActivity extends AppCompatActivity {
         msgRecycleView.setAdapter(messagesAdapter);
         messagesAdapter.notifyDataSetChanged();
 
-
-/*
-          Write a method to get messages from database.
-        * Take all the messages with sender and user id and other arguments
-        * Create Message instances with that data
-        * add thease instances to messagesArrayList
-        * put  | messagesAdapter.notifyDataSetChanged();| end of the method
-        */
 
 
         setSupportActionBar(chatToolbar);
@@ -180,10 +171,6 @@ public class SingleChatActivity extends AppCompatActivity {
 
                     messagesAdapter.notifyDataSetChanged();
 
-
-
-
-
                 }
                 else{
                     Toast.makeText(SingleChatActivity.this, "Connection not established", Toast.LENGTH_SHORT).show();
@@ -195,8 +182,9 @@ public class SingleChatActivity extends AppCompatActivity {
     private void Update(String FRIEND){
 
         String USER= getUserEmail();
+        byte[] FRIEND_DEVICE = makeBYTE(device);
 
-        Boolean insert = skyChatDB.insertChat(USER,FRIEND);
+        Boolean insert = skyChatDB.insertChat(USER,FRIEND,FRIEND_DEVICE);
         if(insert==true){
             Toast.makeText(SingleChatActivity.this, "ADDED", Toast.LENGTH_SHORT).show();
 
@@ -222,6 +210,48 @@ public class SingleChatActivity extends AppCompatActivity {
         messagesAdapter.notifyDataSetChanged();
 
 
+    }
+
+    // Convert BluetoothDevice object to byte array
+    public byte[] makeBYTE(BluetoothDevice btdevice) {
+        try {
+
+            ByteArrayOutputStream baos  = null;
+            ObjectOutputStream oos = null;
+
+            try {
+                baos = new ByteArrayOutputStream();
+                oos = new ObjectOutputStream(baos);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            oos.writeObject(btdevice);
+            byte[] employeeAsBytes = baos.toByteArray();
+            ByteArrayInputStream bais = new ByteArrayInputStream(employeeAsBytes);
+            return employeeAsBytes;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // Get BluetoothDevice object from  byte array
+    public BluetoothDevice makeOBJECT(byte[] data) {
+        try {
+
+            ByteArrayInputStream baip = new ByteArrayInputStream(data);
+            ObjectInputStream ois = new ObjectInputStream(baip);
+            BluetoothDevice dataobj = (BluetoothDevice ) ois.readObject();
+            return dataobj ;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

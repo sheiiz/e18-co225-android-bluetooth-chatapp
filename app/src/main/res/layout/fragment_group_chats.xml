@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".GroupsFragment">
+    tools:context=".GroupChatsFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

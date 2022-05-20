@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         login = (Button) findViewById(R.id.login_button);
         register = (Button) findViewById(R.id.register_button);
-        email = (EditText) findViewById(R.id.login_email);
+        email = (EditText) findViewById(R.id.login_username);
         password = (EditText) findViewById(R.id.login_password);
 
         listPairedDevices = (ListView)findViewById(R.id.list_paired_devices);

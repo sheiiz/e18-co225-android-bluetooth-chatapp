@@ -33,7 +33,7 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase skyChatDB) {
         skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
         skyChatDB.execSQL("create Table USERS(USERNAME TEXT PRIMARY KEY, PASSWORD TEXT)");
-        skyChatDB.execSQL("create Table CHATS(CHATID INT PRIMARY KEY  ,USER TEXT , FRIEND TEXT )");
+        skyChatDB.execSQL("create Table CHATS(CHATID INT PRIMARY KEY  ,USER TEXT , FRIEND TEXT , FRIENDDEVICE BLOB)");
         skyChatDB.execSQL("create Table MESSAGES(MSGID INT PRIMARY KEY , CHATID INT ,TYPE TEXT , MSG TEXT , FOREIGN KEY (CHATID) REFERENCES CHATS(CHATID))");
 
     }
@@ -41,7 +41,10 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase skyChatDB, int i, int i1) {
         skyChatDB.execSQL("DROP Table if exists USERS");
-
+        skyChatDB.execSQL("DROP Table if exists GROUPCHATS");
+        skyChatDB.execSQL("DROP Table if exists CHATS");
+        skyChatDB.execSQL("DROP Table if exists MESSAGES");
+        onCreate(skyChatDB);
     }
 
     public Boolean insertUSER(String USERNAME,String PASSWORD){
@@ -162,13 +165,16 @@ public class Database extends SQLiteOpenHelper {
         else return false;
     }
 
-    public Boolean insertChat(String user, String friend) {
+    public Boolean insertChat(String user, String friend, byte[] device) {
         SQLiteDatabase skyChatDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         chatID++;
         contentValues.put("CHATID",chatID);
         contentValues.put("USER",user);
         contentValues.put("FRIEND",friend);
+        contentValues.put("FRIEND",friend);
+        contentValues.put("FRIENDDEVICE", device);
+
 
         Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE  FRIEND = ? AND USER = ?",new String[] {friend,user});
         if(cursor.getCount()>0){return true;}
@@ -244,11 +250,22 @@ public class Database extends SQLiteOpenHelper {
     public int getCHATID(String user, String receiverName) {
         SQLiteDatabase skyChatDB = this.getWritableDatabase();
 
-        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE USER = ? AND FRIEND = ?",new String[] {user,receiverName});
-        while (cursor.moveToNext()){
-            value= cursor.getInt(0);
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS WHERE USER = ? AND FRIEND = ?", new String[]{user, receiverName});
+        while (cursor.moveToNext()) {
+            value = cursor.getInt(0);
         }
         return value;
+    }
 
+
+    public byte[] getFRIENDDEVICE(int chatID) {
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM CHATS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(0)==chatID){
+                return cursor.getBlob(3);
+            }
+        }
+        return null;
     }
 }

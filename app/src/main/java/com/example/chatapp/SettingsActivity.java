@@ -28,12 +28,12 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_user_settings);
 
         //UserEmail = findViewById(R.id.login_email);
         UserPassword = findViewById(R.id.login_password);
-        NewUserEmail = findViewById(R.id.change_settings_email);
-        NewUserPassword = findViewById(R.id.change_settings_password);
+        NewUserEmail = findViewById(R.id.change_settings_username);
+        NewUserPassword = findViewById(R.id.change_settings_new_password);
         NewUserConfirmPassword = findViewById(R.id.change_settings_confirm_password);
         skyChatDB= new Database(this);
         SaveButton = (Button) findViewById(R.id.save_button);

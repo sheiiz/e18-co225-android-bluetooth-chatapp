@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -129,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void InitializedFields() {
         RegisterButton = (Button) findViewById(R.id.register_button);
-        UserEmail = (EditText) findViewById(R.id.register_email);
+        UserEmail = (EditText) findViewById(R.id.register_username);
         UserPassword = (EditText) findViewById(R.id.register_password);
         AlreadyHaveAccountLink = (TextView) findViewById(R.id.already_have_account_link);
         loadingBar = new ProgressDialog(this);

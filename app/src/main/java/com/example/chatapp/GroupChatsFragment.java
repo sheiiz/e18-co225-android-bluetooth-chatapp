@@ -1,7 +1,5 @@
 package com.example.chatapp;
 
-import static com.example.chatapp.LoginActivity.getUserEmail;
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class GroupsFragment extends Fragment {
+public class GroupChatsFragment extends Fragment {
     View chatView;
     ListView listView;
     ArrayAdapter<String> arrayAdapter;

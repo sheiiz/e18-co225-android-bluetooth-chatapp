@@ -75,8 +75,7 @@ public class ChatUtils {
             }
 
             CURRENT_STATE = message.what;
-            // SingleChatActivity.userState.setText(status);
-            SingleChatActivity.userState.setText(tempReceiveMessage);
+             SingleChatActivity.userState.setText(status);
 
             return true;
         }

@@ -47,20 +47,13 @@ public class ChatsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-
-
-
         chatView = inflater.inflate(R.layout.fragment_chats, container, false);
         skyChat= new Database(getActivity());
 //        listView = (ListView) chatView.findViewById(R.id.listview_chats);
         String currentUser= getUserEmail();
         chatList=skyChat.getChatNames(currentUser);
-        ////////////////////////////////////////////////
-
 
         recyclerView=chatView.findViewById(R.id.singleChatRecyclerView);
-
-
 
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(getContext());
