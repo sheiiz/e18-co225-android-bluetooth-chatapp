@@ -31,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_settings);
 
         //UserEmail = findViewById(R.id.login_email);
-        UserPassword = findViewById(R.id.login_password);
+        UserPassword = findViewById(R.id.change_settings_password);
         NewUserEmail = findViewById(R.id.change_settings_username);
         NewUserPassword = findViewById(R.id.change_settings_new_password);
         NewUserConfirmPassword = findViewById(R.id.change_settings_confirm_password);
@@ -84,14 +84,20 @@ public class SettingsActivity extends AppCompatActivity {
         String email= getUserEmail();
 
         String new_email= NewUserEmail.getText().toString();
+        String password= UserPassword.getText().toString();
         String new_password= NewUserPassword.getText().toString();
         String renew_password= NewUserConfirmPassword.getText().toString();
+        Boolean flag = skyChatDB.isPasswordCorrect(password);
 
-        if(TextUtils.isEmpty(NewUserEmail.getText().toString()) || TextUtils.isEmpty(NewUserPassword.getText().toString()) || TextUtils.isEmpty(NewUserConfirmPassword.getText().toString())){
+        if(TextUtils.isEmpty(NewUserEmail.getText().toString()) || TextUtils.isEmpty(UserPassword.getText().toString()) || TextUtils.isEmpty(NewUserPassword.getText().toString()) || TextUtils.isEmpty(NewUserConfirmPassword.getText().toString())){
             Toast.makeText(SettingsActivity.this, "All fields required", Toast.LENGTH_SHORT).show();
         }
+        else if(!flag){
+           Toast.makeText(SettingsActivity.this, "Current Password is INVALID", Toast.LENGTH_SHORT).show();
+
+        }
         else if(!new_password.equals(renew_password)){
-            Toast.makeText(SettingsActivity.this, "Please Enter Password Correctly", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingsActivity.this, "Please Re-Enter Password Correctly", Toast.LENGTH_SHORT).show();
 
         }
         else{

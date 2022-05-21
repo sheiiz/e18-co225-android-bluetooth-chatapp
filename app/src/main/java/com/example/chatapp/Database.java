@@ -1,6 +1,8 @@
 package com.example.chatapp;
 
 
+import static com.example.chatapp.LoginActivity.getUserEmail;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -267,5 +269,14 @@ public class Database extends SQLiteOpenHelper {
             }
         }
         return null;
+    }
+
+    public Boolean isPasswordCorrect(String password) {
+        SQLiteDatabase skyChatDB = this.getWritableDatabase();
+        String user= getUserEmail();
+        Cursor cursor = skyChatDB.rawQuery("SELECT * FROM USERS WHERE USERNAME =? AND PASSWORD = ?",new String[] {user,password});
+        if(cursor.getCount()>0){return true;}
+        else return false;
+
     }
 }
