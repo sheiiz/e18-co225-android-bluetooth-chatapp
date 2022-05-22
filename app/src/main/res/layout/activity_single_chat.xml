@@ -9,7 +9,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarofspecificchat"
+        android:id="@+id/single_chat_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="0dp"
@@ -21,7 +21,7 @@
             android:gravity="center_vertical">
 
             <ImageButton
-                android:id="@+id/backbuttonofspecificchat"
+                android:id="@+id/single_chat_back_btn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
@@ -33,17 +33,17 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardviewofspeficuser"
+                android:id="@+id/single_chat_card_view"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/backbuttonofspecificchat"
+                android:layout_toRightOf="@id/single_chat_back_btn"
                 app:cardCornerRadius="35dp">
 
 
                 <ImageView
-                    android:id="@+id/specificuserimageinimageview"
+                    android:id="@+id/single_chat_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -56,13 +56,13 @@
 
 
             <TextView
-                android:id="@+id/Nameofspecificuser"
+                android:id="@+id/single_chat_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="11dp"
-                android:layout_toRightOf="@id/cardviewofspeficuser"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/single_chat_card_view"
                 android:text="Name of User"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -74,12 +74,12 @@
                 android:id="@+id/userState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/single_chat_username"
                 android:layout_centerVertical="false"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="35dp"
                 android:layout_marginBottom="2dp"
-                android:layout_toRightOf="@id/cardviewofspeficuser"
-                android:paddingTop="1dp"
+                android:layout_toRightOf="@id/single_chat_card_view"
+                android:paddingBottom="2dp"
                 android:text="State..."
                 android:textColor="@color/white"
                 android:textSize="11sp">
@@ -91,9 +91,11 @@
                 android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="240dp"
+                android:layout_toLeftOf="@+id/btn_connect"
                 android:background="@android:color/transparent"
                 android:text="Listen"
+                android:textAlignment="viewEnd"
+                android:paddingRight="5dp"
                 android:textColor="#D6D8E1"
                 android:textSize="13dp"
                 android:textStyle="bold" />
@@ -102,8 +104,10 @@
                 android:id="@+id/btn_connect"
                 android:layout_width="70dp"
                 android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="300dp"
+                android:layout_marginEnd="20dp"
+
                 android:background="@android:color/transparent"
                 android:text="Connect"
                 android:textColor="#D6D8E1"
@@ -117,11 +121,11 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewofsinglechat"
+        android:id="@+id/single_chat_recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/getmessage"
-        android:layout_below="@id/toolbarofspecificchat"
+        android:layout_below="@id/single_chat_toolbar"
         android:padding="5dp">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -134,7 +138,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="55dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/messagebackgroun"
+        android:background="@drawable/message_background"
         android:hint="Type a message"
         android:paddingLeft="20dp"
         android:paddingEnd="10dp"
