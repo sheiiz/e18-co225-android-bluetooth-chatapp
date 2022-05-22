@@ -17,8 +17,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -57,14 +55,14 @@ public class SingleChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_chat);
 
-        userName = findViewById(R.id.Nameofspecificuser);
+        userName = findViewById(R.id.single_chat_username);
         userState = findViewById(R.id.userState);
         getMessage = findViewById(R.id.getmessage);
         sendMessageButton = findViewById(R.id.imageviewsendmessage);
-        backButton = findViewById(R.id.backbuttonofspecificchat);
-        chatToolbar = findViewById(R.id.toolbarofspecificchat);
+        backButton = findViewById(R.id.single_chat_back_btn);
+        chatToolbar = findViewById(R.id.single_chat_toolbar);
         sendMessageCardView = findViewById(R.id.carviewofsendmessage);
-        msgRecycleView = findViewById(R.id.recyclerviewofsinglechat);
+        msgRecycleView = findViewById(R.id.single_chat_recycleview);
         listenButton = findViewById(R.id.btn_listen);
         connectButton = findViewById(R.id.btn_connect);
         skyChatDB= new Database(this);
