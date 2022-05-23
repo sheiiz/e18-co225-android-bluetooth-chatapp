@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button RegisterButton;
-    private EditText UserEmail,UserPassword;
+    private EditText UserEmail,UserPassword,UserConfirmPassword;
     private TextView AlreadyHaveAccountLink;
 
     private ProgressDialog loadingBar;
@@ -82,8 +82,12 @@ public class RegisterActivity extends AppCompatActivity {
     private void createAccount(){
         String email1= UserEmail.getText().toString();
         String password1 = UserPassword.getText().toString();
+        String password2 = UserConfirmPassword.getText().toString();
         if(TextUtils.isEmpty(UserEmail.getText().toString()) || TextUtils.isEmpty(UserPassword.getText().toString())){
             Toast.makeText(RegisterActivity.this, "All fields required", Toast.LENGTH_SHORT).show();
+        }
+        else if(!password1.equals(password2)){
+            Toast.makeText(RegisterActivity.this, "Please Re-Enter Password Correctly", Toast.LENGTH_SHORT).show();
         }
         else{
             loadingBar.setTitle("Creating New Account");
@@ -130,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterButton = (Button) findViewById(R.id.register_button);
         UserEmail = (EditText) findViewById(R.id.register_username);
         UserPassword = (EditText) findViewById(R.id.register_password);
+        UserConfirmPassword = (EditText) findViewById(R.id.register_confirm_password);
         AlreadyHaveAccountLink = (TextView) findViewById(R.id.already_have_account_link);
         loadingBar = new ProgressDialog(this);
 
