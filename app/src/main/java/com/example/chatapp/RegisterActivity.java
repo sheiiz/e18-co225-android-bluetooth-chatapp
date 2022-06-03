@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,10 +18,14 @@ import android.widget.Toast;
 
 
 
-public class RegisterActivity extends AppCompatActivity {
+public class  RegisterActivity extends AppCompatActivity {
     private Button RegisterButton;
     private EditText UserEmail,UserPassword;
     private TextView AlreadyHaveAccountLink;
+
+    private Uri selectedImage;
+    private ImageView set_profile_image;
+    private Bitmap image_to_store;
 
     private ProgressDialog loadingBar;
 
@@ -36,9 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
         InitializedFields();
 
 
-        ImageView gallery = findViewById(R.id.getuserimageinimageview);
+        set_profile_image = findViewById(R.id.getuserimageinimageview);
 
-        gallery.setOnClickListener(new View.OnClickListener() {
+        set_profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -71,13 +76,20 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK && data!=null) {
-            Uri selectedImage = data.getData();
-            ImageView set_profile_image = findViewById(R.id.getuserimageinimageview);
-            set_profile_image.setImageURI(selectedImage);
+        try{
+            super.onActivityResult(requestCode, resultCode, data);
+            if(resultCode==RESULT_OK && data!=null) {
+                selectedImage = data.getData();
+                image_to_store = MediaStore.Images.Media.getBitmap(getContentResolver(),selectedImage);
+                set_profile_image.setImageBitmap(image_to_store);
+            }
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "e.getMessage()", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private void createAccount(){
         String email1= UserEmail.getText().toString();
@@ -95,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             Boolean checkUser = skyChatDB.checkUSERNAME(UserEmail.getText().toString());
             if(checkUser==false){
-                Boolean insert = skyChatDB.insertUSER(email1,password1);
+                Boolean insert = skyChatDB.insertUSER(email1,password1,image_to_store);
                 if(insert==true){
                     Toast.makeText(RegisterActivity.this, "Sucessfull", Toast.LENGTH_SHORT).show();
 
