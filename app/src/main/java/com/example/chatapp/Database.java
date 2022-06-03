@@ -8,18 +8,23 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.ColorSpace;
+
 
 
 import androidx.fragment.app.Fragment;
 
 
-
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 
 public class Database extends SQLiteOpenHelper {
     public static final String DBNAME = "SkyChat.db";
     public static int chatID = 0;
+    private ByteArrayOutputStream objectByteArrayOutputStream;
+    private byte[] imageInBytes;
 
 
     public Database(Context context) {
@@ -34,7 +39,7 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase skyChatDB) {
         skyChatDB.execSQL("create Table GROUPCHATS(GROUPNAME TEXT PRIMARY KEY, GROUPADMIN TEXT)");
-        skyChatDB.execSQL("create Table USERS(USERNAME TEXT PRIMARY KEY, PASSWORD TEXT)");
+        skyChatDB.execSQL("create Table USERS(USERNAME TEXT PRIMARY KEY, PASSWORD TEXT, IMAGE BLOB)");
         skyChatDB.execSQL("create Table CHATS(CHATID INT PRIMARY KEY  ,USER TEXT , FRIEND TEXT , FRIENDDEVICE BLOB)");
         skyChatDB.execSQL("create Table MESSAGES(MSGID INT PRIMARY KEY , CHATID INT ,TYPE TEXT , MSG TEXT , FOREIGN KEY (CHATID) REFERENCES CHATS(CHATID))");
 
@@ -49,11 +54,28 @@ public class Database extends SQLiteOpenHelper {
         onCreate(skyChatDB);
     }
 
-    public Boolean insertUSER(String USERNAME,String PASSWORD){
+    //public void storeImage(ModelClass object) {
+
+        //Bitmap imageToStoreBitMap = object.getImage();
+
+        //objectByteArrayOutputStream = new ByteArrayOutputStream();
+        //imageToStoreBitMap.compress(Bitmap.CompressFormat.JPEG, 100, objectByteArrayOutputStream);
+        //imageInBytes = objectByteArrayOutputStream.toByteArray();
+
+    //}
+
+    public Boolean insertUSER(String USERNAME,String PASSWORD, Bitmap IMAGE){
         SQLiteDatabase skyChatDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("USERNAME",USERNAME);
         contentValues.put("PASSWORD",PASSWORD);
+
+        objectByteArrayOutputStream = new ByteArrayOutputStream();
+        IMAGE.compress(Bitmap.CompressFormat.JPEG, 100, objectByteArrayOutputStream);
+        imageInBytes = objectByteArrayOutputStream.toByteArray();
+
+        contentValues.put("IMAGE",imageInBytes);
+
         long result = skyChatDB.insert("USERS",null,contentValues);
         if(result==-1) return false;
         else return true;
